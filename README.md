@@ -1,5 +1,9 @@
 # AI Executive Operations Copilot
 
+> **Start here:** Read **ExecOS_Case_Study.pdf** for a walkthrough of the project before exploring the repository.
+>
+# AI Executive Operations Copilot
+
 A prototype demonstrating how AI can streamline executive operations using synthetic healthcare SaaS data.
 
 ## Project Overview
