@@ -1,4 +1,35 @@
-# Action Tracker Prompt
-Extract decisions and follow-ups from meeting notes. Return:
-Owner | Action | Due Date | Priority | Status.
-Do not infer an owner or date when none is stated; mark it TBD.
+# AI Executive Operations Copilot
+
+A prototype demonstrating how AI can streamline executive operations using synthetic healthcare SaaS data.
+
+## Project Overview
+
+This project shows how AI can support recurring executive workflows while maintaining governance and human oversight.
+
+The prototype includes:
+
+- Executive KPI reporting
+- Weekly executive summaries
+- Board-ready memo generation
+- QA review of AI-generated content
+- Action item tracking
+
+## Repository Contents
+
+- `ExecOS_Case_Study.pdf` – project walkthrough
+- `ExecOS_Executive_Workbook.xlsx` – synthetic operating metrics
+- `executive_dashboard.png` – dashboard preview
+- Prompt library
+- Sample outputs
+
+## Technology
+
+- Python
+- Streamlit
+- Markdown
+- Excel
+- Synthetic datasets
+
+## Purpose
+
+This project was created for portfolio purposes using entirely synthetic data to demonstrate an approach to AI-enabled executive operations.
