@@ -4,6 +4,10 @@
 
 A prototype demonstrating how AI can streamline executive operations using synthetic healthcare SaaS data.
 
+## Dashboard Preview
+
+![Executive Dashboard](executive_dashboard.png)
+
 ## Project Overview
 
 This project shows how AI can support recurring executive workflows while maintaining governance and human oversight.
