@@ -1,0 +1,64 @@
+import streamlit as st
+import pandas as pd
+from pathlib import Path
+
+st.set_page_config(page_title="ExecOS", page_icon="◼", layout="wide")
+BASE = Path(__file__).resolve().parents[1]
+metrics = pd.read_csv(BASE/"data"/"operating_metrics.csv")
+pipeline = pd.read_csv(BASE/"data"/"crm_pipeline.csv")
+actions = pd.read_csv(BASE/"data"/"action_tracker.csv")
+
+st.title("ExecOS")
+st.caption("AI-enabled executive reporting and governance prototype | Synthetic data")
+
+latest = metrics.iloc[-1]
+prev = metrics.iloc[-2]
+c1,c2,c3,c4 = st.columns(4)
+c1.metric("ARR", f"${latest.ARR_M:.1f}M", f"{latest.ARR_M-prev.ARR_M:+.1f}M")
+c2.metric("Pipeline Coverage", f"{latest.Pipeline_Coverage_x:.1f}x", f"{latest.Pipeline_Coverage_x-prev.Pipeline_Coverage_x:+.1f}x")
+c3.metric("Implementation Utilization", f"{latest.Implementation_Utilization_pct:.0f}%", f"{latest.Implementation_Utilization_pct-prev.Implementation_Utilization_pct:+.0f}%")
+c4.metric("Customer Retention", f"{latest.Customer_Retention_pct:.1f}%", f"{latest.Customer_Retention_pct-prev.Customer_Retention_pct:+.1f}%")
+
+tab1,tab2,tab3,tab4 = st.tabs(["Executive Dashboard","AI Brief","QA Review","Action Tracker"])
+with tab1:
+    st.subheader("Operating trends")
+    st.line_chart(metrics.set_index("Month")[["ARR_M","ARR_Plan_M"]])
+    a,b = st.columns(2)
+    with a:
+        st.line_chart(metrics.set_index("Month")[["Pipeline_Coverage_x"]])
+    with b:
+        st.line_chart(metrics.set_index("Month")[["Implementation_Utilization_pct","Customer_Retention_pct"]])
+    st.subheader("Pipeline by territory")
+    terr = pipeline[pipeline.Stage.isin(["Discovery","Solution Fit","Proposal","Negotiation"])].groupby("Territory")["Weighted_ARR"].sum().sort_values()
+    st.bar_chart(terr)
+
+with tab2:
+    st.subheader("Weekly ELT Brief")
+    st.markdown("""### Executive Summary
+CareFlow Health closed the period at **$23.2M ARR**, **$0.7M below plan**. Pipeline coverage declined to **2.8x**, with the largest gap in the Northeast, while forecast accuracy fell to **86%**. Implementation utilization remains elevated at **93%**, creating a near-term onboarding constraint. Customer retention remains healthy at **97.1%**, but the recent decline warrants attention.
+
+### Recommended actions
+1. Launch a 30-day Northeast pipeline recovery plan.
+2. Add temporary implementation capacity.
+3. Accelerate onboarding workflow automation.
+
+### Decisions required
+- Approve temporary contractor capacity.
+- Endorse territory rebalancing.
+- Prioritize onboarding automation.""")
+
+with tab3:
+    st.subheader("Executive Materials QA")
+    st.success("All KPI values reconcile to the synthetic source data.")
+    st.warning("Confirm contractor budget owner and product decision date.")
+    st.dataframe(pd.DataFrame({
+        "Check":["Metrics reconcile","Actual vs plan labeled","Actions have owners","Actions have dates","Risks have mitigation"],
+        "Status":["Pass","Pass","Pass","Attention","Pass"]
+    }), use_container_width=True, hide_index=True)
+
+with tab4:
+    st.subheader("Action Tracker")
+    st.dataframe(actions, use_container_width=True, hide_index=True)
+
+st.divider()
+st.caption("Portfolio prototype. All company names, data, and outputs are fictional.")

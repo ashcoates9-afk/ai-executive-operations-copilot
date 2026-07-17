@@ -1,0 +1,51 @@
+# ExecOS
+
+**AI-enabled executive reporting and governance prototype**
+
+ExecOS demonstrates how a weekly executive reporting workflow can transform structured operating inputs into KPI visibility, an ELT brief, a board memo draft, quality-assurance findings, and an action tracker.
+
+The project uses entirely synthetic data for a fictional value-based healthcare SaaS company, CareFlow Health.
+
+## What it demonstrates
+
+- AI-enabled executive workflow design
+- Executive and board materials preparation
+- KPI synthesis and operational judgment
+- Materials QA and governance controls
+- Action tracking and follow-through
+- Portfolio-safe handling of confidential experience
+
+## Core KPIs
+
+- ARR and performance versus plan
+- Pipeline coverage and forecast accuracy
+- Implementation utilization
+- Customer retention
+
+## Run the demo
+
+```bash
+pip install -r requirements.txt
+streamlit run app/streamlit_app.py
+```
+
+## Project structure
+
+- `app/` - Streamlit prototype
+- `data/` - synthetic CRM, operating, and action data
+- `outputs/` - sample ELT brief, board memo, QA review, and PDF case study
+- `prompts/` - reusable AI prompt library
+- `docs/` - project overview and demo script
+- `screenshots/` - static preview for asynchronous review
+
+## Governance principles
+
+1. Calculations are deterministic and source-controlled.
+2. AI drafts narrative but does not approve materials.
+3. All factual assertions must reconcile to approved sources.
+4. Named executives retain approval responsibility.
+5. Confidential data should only be processed in approved enterprise environments.
+
+## Disclaimer
+
+All company names, metrics, recommendations, and outputs are fictional. This project demonstrates an operating model and does not reproduce proprietary work.

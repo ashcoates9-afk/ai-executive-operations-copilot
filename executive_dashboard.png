@@ -1,0 +1,10 @@
+# Executive Materials QA Prompt
+Review the draft against the source data. Check:
+- numerical consistency
+- period labels
+- unsupported claims
+- undefined acronyms
+- risks without mitigation
+- actions without owners or dates
+- contradictions between summary and detail
+Return PASS, ATTENTION REQUIRED, and BLOCKING issues.
